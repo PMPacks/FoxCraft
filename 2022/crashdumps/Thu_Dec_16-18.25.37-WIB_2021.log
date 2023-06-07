@@ -1,0 +1,230 @@
+PocketMine-MP Crash Dump Thu Dec 16 18:25:37 WIB 2021
+
+Error: Undefined variable $inv
+File: plugins/MyItem/src/hachkingtohach1/MyItem/MyItem
+Line: 308
+Type: ErrorException
+
+THIS CRASH WAS CAUSED BY A PLUGIN
+BAD PLUGIN: MyItem
+
+Code:
+[299] 		
+[300] 		$this->dataItems[$player->getName()] = $items;
+[301] 		if(!empty($items[$this->pageDataPlayer[$player->getName()]])){
+[302] 		    foreach($items[$this->pageDataPlayer[$player->getName()]] as $item){
+[303] 			    $menu->addItem($item);
+[304] 			}
+[305] 		}
+[306] 		
+[307]         $menu->send($player);		
+[308] 		$inv->setListener(function(InvLibAction $action) use ($inv): void{
+[309] 	        $count = 0;
+[310] 		    $page = 1;
+[311] 		    $items = [];
+[312] 		    if(!empty($this->getAllItems())){
+[313] 			    foreach($this->getAllItems() as $item){
+[314] 				    if($count <= 44){
+[315] 				        $items[$page][] = $item;
+[316] 					    $count++;
+[317] 					}else{
+[318] 					    $count = 0;
+
+Backtrace:
+#0 plugins/MyItem/src/hachkingtohach1/MyItem/MyItem(308): pocketmine\errorhandler\ErrorToExceptionHandler::handle(integer 2, string[23] Undefined variable $inv, string[64] D:\FoxCraft\plugins\MyItem\src\hachkingtohach1\MyItem\MyItem.php, integer 308)
+#1 plugins/MyItem/src/hachkingtohach1/MyItem/MyItem(785): hachkingtohach1\MyItem\MyItem->openMenuItems(object pocketmine\player\Player#27189)
+#2 pmsrc/src/command/PluginCommand(54): hachkingtohach1\MyItem\MyItem->onCommand(object pocketmine\player\Player#27189, object pocketmine\command\PluginCommand#23645, string[6] myitem, array[1])
+#3 pmsrc/src/command/SimpleCommandMap(220): pocketmine\command\PluginCommand->execute(object pocketmine\player\Player#27189, string[6] myitem, array[1])
+#4 pmsrc/src/Server(1394): pocketmine\command\SimpleCommandMap->dispatch(object pocketmine\player\Player#27189, string[11] myitem menu)
+#5 pmsrc/src/player/Player(1337): pocketmine\Server->dispatchCommand(object pocketmine\player\Player#27189, string[11] myitem menu)
+#6 pmsrc/src/network/mcpe/handler/InGamePacketHandler(688): pocketmine\player\Player->chat(string[12] /myitem menu)
+#7 pmsrc/vendor/pocketmine/bedrock-protocol/src/CommandRequestPacket(60): pocketmine\network\mcpe\handler\InGamePacketHandler->handleCommandRequest(object pocketmine\network\mcpe\protocol\CommandRequestPacket#117716)
+#8 pmsrc/src/network/mcpe/NetworkSession(395): pocketmine\network\mcpe\protocol\CommandRequestPacket->handle(object pocketmine\network\mcpe\handler\InGamePacketHandler#116470)
+#9 pmsrc/src/network/mcpe/NetworkSession(358): pocketmine\network\mcpe\NetworkSession->handleDataPacket(object pocketmine\network\mcpe\protocol\CommandRequestPacket#117716, string[33] M./myitem menu..H.>z?]......~`...)
+#10 pmsrc/src/network/mcpe/raklib/RakLibInterface(192): pocketmine\network\mcpe\NetworkSession->handleEncoded(string[37] S......,I.U.M.+eX.q...>v...G...%.c`..)
+#11 pmsrc/vendor/pocketmine/raklib-ipc/src/RakLibToUserThreadMessageReceiver(42): pocketmine\network\mcpe\raklib\RakLibInterface->onPacketReceive(integer 0, string[46] ....p+.4.....~..!z.....1?r..6...d.N.......]z..)
+#12 pmsrc/src/network/mcpe/raklib/RakLibInterface(122): raklib\server\ipc\RakLibToUserThreadMessageReceiver->handle(object pocketmine\network\mcpe\raklib\RakLibInterface#24924)
+#13 pmsrc/vendor/pocketmine/snooze/src/SleeperHandler(123): pocketmine\network\mcpe\raklib\RakLibInterface->pocketmine\network\mcpe\raklib\{closure}()
+#14 pmsrc/vendor/pocketmine/snooze/src/SleeperHandler(82): pocketmine\snooze\SleeperHandler->processNotifications()
+#15 pmsrc/src/Server(1645): pocketmine\snooze\SleeperHandler->sleepUntil(double 1639653937.0896)
+#16 pmsrc/src/Server(1034): pocketmine\Server->tickProcessor()
+#17 pmsrc/src/PocketMine(301): pocketmine\Server->__construct(object BaseClassLoader#2, object pocketmine\utils\MainLogger#3, string[12] D:\FoxCraft\, string[20] D:\FoxCraft\plugins\)
+#18 pmsrc/src/PocketMine(324): pocketmine\server()
+#19 pmsrc(11): require(string[56] phar://D:/FoxCraft/PocketMine-MP.phar/src/PocketMine.php)
+
+PocketMine-MP version: 4.0.0 [Protocol 475]
+Git commit: 468faa464b2bc5c97f23fafbb71ea61035f6f218
+uname -a: Windows NT DESKTOP-BVRHES0 10.0 build 19042 (Windows 10) AMD64
+PHP Version: 8.0.13
+Zend version: 4.0.13
+OS: WINNT, win
+Composer libraries: 
+- adhocore/json-comment 1.1.2@fc2f76979f0a44a5f5bc2a2b600d0762fe0e78e7
+- brick/math 0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae
+- daverandom/callback-validator unknown@unknown
+- fgrosse/phpasn1 v2.3.0@20299033c35f4300eb656e7e8e88cf52d1d6694e
+- netresearch/jsonmapper v4.0.0@8bbc021a8edb2e4a7ea2f8ad4fa9ec9dce2fcb8d
+- pocketmine/bedrock-data 1.5.0+bedrock-1.18.0@482c679aa5ed0b81c088c2b1ff0b8110a94c8a6c
+- pocketmine/bedrock-protocol 7.0.0+bedrock-1.18.0@040a883a4abb8c9b93114d5278cb5fecc635da82
+- pocketmine/binaryutils 0.2.2@f883e1cf9099ed6a757a10a2f75b3333eeb2cdf9
+- pocketmine/callback-validator 1.0.3@64787469766bcaa7e5885242e85c23c25e8c55a2
+- pocketmine/classloader 0.2.0@49ea303993efdfb39cd302e2156d50aa78209e78
+- pocketmine/color 0.2.0@09be6ea6d76f2e33d6813c39d29c22c46c17e1d2
+- pocketmine/errorhandler 0.3.0@ec742b209e8056bbe855069c4eff94c9734ea19b
+- pocketmine/locale-data 2.0.20@a6e4eb22587e0014f6d658732cf633262723f8d3
+- pocketmine/log 0.4.0@e6c912c0f9055c81d23108ec2d179b96f404c043
+- pocketmine/log-pthreads 0.4.0@61f709e8cf36bcc24e4efe02acded680a1ce23cd
+- pocketmine/math 0.4.0@6d64e2555bd2e95ed024574f75d1cefc135c89fc
+- pocketmine/nbt 0.3.0@98c4a04b55a915e18f83d3b0c9beb24a71abcd31
+- pocketmine/pocketmine-mp 4.0.0@468faa464b2bc5c97f23fafbb71ea61035f6f218
+- pocketmine/raklib 0.14.2@e3a861187470e1facc6625040128f447ebbcbaec
+- pocketmine/raklib-ipc 0.1.1@922a6444b0c6c7daaa5aa5a832107e1ec4738aed
+- pocketmine/snooze 0.3.1@0ac8fc2a781c419a1f64ebca4d5835028f59e29b
+- ramsey/collection 1.2.2@cccc74ee5e328031b15640b51056ee8d3bb66c0a
+- ramsey/uuid 4.2.3@fc9bb7fb5388691fd7373cd44dcb4d63bbcf24df
+- rhumsaa/uuid unknown@unknown
+- symfony/polyfill-ctype v1.23.0@46cd95797e9df938fdd2b03693b5fca5e64b01ce
+- symfony/polyfill-php80 v1.23.1@1100343ed1a92e3a38f9ae122fc0eb21602547be
+- symfony/polyfill-php81 v1.23.0@e66119f3de95efc359483f810c4c3e6436279436
+- webmozart/assert 1.10.0@6964c76c7804814a842473e0c8fd15bab0f18e25
+- webmozart/path-util 2.3.0@d939f7edc24c9a1bb9c0dee5cb05d8e859490725
+
+Loaded plugins:
+BuilderTools 1.3.0-beta2 by CzechPMDevs, VixikHD for API(s) 4.0.0
+DevTools 1.15.0 by PocketMine Team for API(s) 4.0.0
+ExtendedBlocksConverter 1.0.0 by JavierLeon9966 for API(s) 4.0.0
+KeepInventory 1.0.0 by NhanAZ, KhoaGamingVN for API(s) 4.0.0
+MaxEnchants 1.2.2 by Xenophilicy for API(s) 4.0.0
+MultiWorld 1.7.0-beta3 by CzechPMDevs, VixikCZ, fuyutsuki, kaliiks for API(s) 4.0.0
+MyItem 1.4.5 by hachkingtohach1 for API(s) 4.0.0
+Netherite 2.0 by Wertzui123 for API(s) 4.0.0
+PlayerStats 3.1.9_BETA by hachkingtohach1 for API(s) 4.0.0
+PurePerms 1.4.4 by Vecnavium , 64FF00 & ProjectInfinity for API(s) 4.0.0
+
+----------------------REPORT THE DATA BELOW THIS LINE-----------------------
+
+===BEGIN CRASH DUMP===
+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
+A4wP/0P+bIjg2pNCsAf70xKD6qCd3/8X64eZMQ==
+===END CRASH DUMP===
